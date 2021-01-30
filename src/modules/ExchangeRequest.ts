@@ -9,6 +9,7 @@ class ExchangeRequest {
         const { latest } = ENDPOINT;
         const { INR, AUD } = RATES;
         try {
+            console.log('Initiating exchange rate request...');
             const response = await axios.get(
                 `${EXCHANGE_RATE_BASE_URL}${latest}`, {
                 params: {
@@ -16,9 +17,11 @@ class ExchangeRequest {
                     symbols: [INR].join(','),
                 }
             });
+            console.log('Exchange rate response fetched successfully!');
             return response.data;
         }
         catch (error) {
+            console.log('Error fetching exchange rate response!');
             return error;
         } 
     }
