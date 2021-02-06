@@ -84,8 +84,11 @@ class ExchangeRateCron {
 
         let mailerFlag = false;
 
-        if (parseFloat(INR!) >= exchangeRateThreshold) {
-            console.log('Exchange rate is above threshold! Setting up resources to send email..')
+        const fetchedExchangeRate: number = parseFloat(INR!);
+        const rupeeSymbol: string = '\u20B9';
+
+        if (fetchedExchangeRate >= exchangeRateThreshold) {
+            console.log(`Exchange rate, ${rupeeSymbol}${fetchedExchangeRate}, is above threshold, ${rupeeSymbol}${exchangeRateThreshold})! Setting up resources to send email..`);
             const mailTransporter: Mail = this.getMailTransporter();
 
             const html: string = `
@@ -122,7 +125,7 @@ class ExchangeRateCron {
             }
             mailerFlag = true;
         }
-        else console.log('Exchange rate is below the specified threshold!');
+        else console.log(`Exchange rate, ${rupeeSymbol}${fetchedExchangeRate}, is below the specified threshold, ${rupeeSymbol}${exchangeRateThreshold}!`);
 
         return mailerFlag;
     }
