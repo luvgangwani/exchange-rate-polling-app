@@ -9,7 +9,7 @@ class Constants {
         INR: 'INR',
         AUD: 'AUD',
     };
-    static readonly exchangeRateThreshold: number = 56;
+    static readonly exchangeRateThreshold: number = 57;
 }
 
 export default Constants;
